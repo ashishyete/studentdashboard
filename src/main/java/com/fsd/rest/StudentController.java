@@ -2,6 +2,8 @@ package com.fsd.rest;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import com.fsd.service.StudentService;
 
 @RestController
 public class StudentController {
+	Logger log = LoggerFactory.getLogger(StudentController.class);
 
 	@Autowired
 	StudentService studentService;
@@ -30,6 +33,7 @@ public class StudentController {
 
 	@GetMapping("/getStudent/{studentId}")
 	public Student getStudent(@PathVariable Long studentId) {
+		log.info("getStudent() called");
 		return studentService.getStudentService(studentId);
 	}
 	
