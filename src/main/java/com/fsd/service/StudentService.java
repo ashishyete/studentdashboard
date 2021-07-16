@@ -36,4 +36,15 @@ public class StudentService {
 	stuObj.setStudentRollNumber(student.getStudentRollNumber());
 	return studentRepo.save(stuObj);
 	}
+	
+	
+	public long getNextAvailableRollNumber() {
+		try {
+		return studentRepo.getAvailableRollNumber();
+		}catch (Exception e) {
+			System.out.println("Exception Caught - No entries in DB : Sending a Default value of 1");
+			return 1;
+		}
+	}
+	
 }

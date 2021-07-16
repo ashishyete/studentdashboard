@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.fsd.model.Student;
 import com.fsd.service.StudentService;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class StudentController {
 	Logger log = LoggerFactory.getLogger(StudentController.class);
 
@@ -25,9 +27,9 @@ public class StudentController {
 	StudentService studentService;
 
 	@PostMapping("/addStudent")
-	public ResponseEntity<Object> addStudent(@RequestBody Student student) {
+	public Student addStudent(@RequestBody Student student) {
 		studentService.addStudentService(student);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+		return student;
 
 	}
 
@@ -47,5 +49,9 @@ public class StudentController {
 		return studentService.updateStudent(student, studentId);
 	}
 	
+	@GetMapping("/getRollNumber")
+	public long getSeqAutoGenerateRollNumber() {
+		return studentService.getNextAvailableRollNumber();
+	}
 	
 }
