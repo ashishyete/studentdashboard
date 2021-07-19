@@ -16,6 +16,7 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long studentId;
 	private String studentName;
+	private String studentEmail;
 	private String studentAddress;
 	private long studentRollNumber;
 	private Double studentPercentage;
@@ -24,9 +25,11 @@ public class Student {
 
 	}
 
-	public Student(String studentName, String studentAddress, long studentRollNumber, Double studentPercentage) {
+	public Student(String studentName, String studentEmail, String studentAddress, long studentRollNumber,
+			Double studentPercentage) {
 		super();
 		this.studentName = studentName;
+		this.studentEmail = studentEmail;
 		this.studentAddress = studentAddress;
 		this.studentRollNumber = studentRollNumber;
 		this.studentPercentage = studentPercentage;
@@ -46,6 +49,14 @@ public class Student {
 
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
+	}
+
+	public String getStudentEmail() {
+		return studentEmail;
+	}
+
+	public void setStudentEmail(String studentEmail) {
+		this.studentEmail = studentEmail;
 	}
 
 	public String getStudentAddress() {
@@ -74,8 +85,9 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [studentId=" + studentId + ", studentName=" + studentName + ", studentAddress=" + studentAddress
-				+ ", studentRollNumber=" + studentRollNumber + ", studentPercentage=" + studentPercentage + "]";
+		return "Student [studentId=" + studentId + ", studentName=" + studentName + ", studentEmail=" + studentEmail
+				+ ", studentAddress=" + studentAddress + ", studentRollNumber=" + studentRollNumber
+				+ ", studentPercentage=" + studentPercentage + "]";
 	}
 
 }

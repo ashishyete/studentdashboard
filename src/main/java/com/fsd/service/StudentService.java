@@ -26,6 +26,10 @@ public class StudentService {
 		return studentRepo.findAll();
 	}
 	
+	public List<Student> deleteStudent(long studentId){
+		studentRepo.deleteById(studentId);
+		return getAllStudentService();
+	}
 	
 	public Student updateStudent(Student student,long studentId) {
 	Student stuObj = getStudentService(studentId);

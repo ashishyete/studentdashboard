@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,14 +45,19 @@ public class StudentController {
 		return studentService.getAllStudentService();
 	}
 	
-	@PutMapping("/updateStudent/{studentId}")
-	public Student updateStudent(@RequestBody Student student, @PathVariable Long studentId) {
-		return studentService.updateStudent(student, studentId);
+	@PutMapping("/updateStudent")
+	public Student updateStudent(@RequestBody Student student) {
+		return studentService.updateStudent(student, student.getStudentId());
 	}
 	
 	@GetMapping("/getRollNumber")
 	public long getSeqAutoGenerateRollNumber() {
 		return studentService.getNextAvailableRollNumber();
+	}
+
+	@DeleteMapping("/deleteStudent/{studentId}")
+	public List<Student> deleteStudent(@PathVariable long studentId) {
+		return studentService.deleteStudent(studentId);
 	}
 	
 }
